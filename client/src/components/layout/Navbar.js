@@ -18,6 +18,11 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li>
+          <Link to="/feed" className="nav-link">
+            Post Feed
+          </Link>
+        </li>
+        <li>
           <Link to="/dashboard" className="nav-link">
             Dashboard
           </Link>
@@ -88,7 +93,7 @@ class Navbar extends Component {
   }
 }
 
-Navbar.PropTypes = {
+Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
