@@ -3,9 +3,10 @@ import axios from "axios";
 import {
   ADD_POST,
   GET_ERRORS,
+  CLEAR_ERRORS,
   GET_POSTS,
-  POST_LOADING,
   GET_POST,
+  POST_LOADING,
   DELETE_POST
 } from "./types";
 
@@ -13,7 +14,7 @@ import {
 export const addPost = postData => dispatch => {
   dispatch(clearErrors());
   axios
-    .post("/api/post", postData)
+    .post("/api/posts", postData)
     .then(res =>
       dispatch({
         type: ADD_POST,
@@ -32,7 +33,7 @@ export const addPost = postData => dispatch => {
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
   axios
-    .get("/api/post")
+    .get("/api/posts")
     .then(res =>
       dispatch({
         type: GET_POSTS,
@@ -111,10 +112,10 @@ export const removeLike = id => dispatch => {
 };
 
 // Add Comment
-export const addComment = (postID, commentData) => dispatch => {
+export const addComment = (postId, commentData) => dispatch => {
   dispatch(clearErrors());
   axios
-    .post(`/api/posts/comment/${postID}`, commentData)
+    .post(`/api/posts/comment/${postId}`, commentData)
     .then(res =>
       dispatch({
         type: GET_POST,
@@ -130,9 +131,9 @@ export const addComment = (postID, commentData) => dispatch => {
 };
 
 // Delete Comment
-export const deleteComment = (postID, commentId) => dispatch => {
+export const deleteComment = (postId, commentId) => dispatch => {
   axios
-    .delete(`/api/posts/comment/${postID}/${commentId}`)
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res =>
       dispatch({
         type: GET_POST,
@@ -157,6 +158,6 @@ export const setPostLoading = () => {
 // Clear errors
 export const clearErrors = () => {
   return {
-    type: POST_LOADING
+    type: CLEAR_ERRORS
   };
 };

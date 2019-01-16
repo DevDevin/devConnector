@@ -1,7 +1,6 @@
 import {
   ADD_POST,
   GET_POSTS,
-  DELELTE_POST,
   POST_LOADING,
   GET_POST,
   DELETE_POST
@@ -29,7 +28,7 @@ export default function(state = initialState, action) {
     case GET_POST:
       return {
         ...state,
-        posts: action.payload,
+        post: action.payload,
         loading: false
       };
     case ADD_POST:
